@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block header %}Welcome Back {{user.username}}{% endblock %}
+
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="card col-4" style="width: 18rem; max-height: 200px;">
+            <div class="card-body">
+                <h5 class="card-title">{{user.first_name}} {{user.last_name}} 
+                    {% if user.is_admin%}<span class="text-success">- Admin </span>{% endif %}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">Username: {{user.username}}</h6>
+                <p class="card-text">{{user.email}}</p>
+                <form>
+                    <button formaction="/users/{{user.username}}/delete" formmethod="POST" class="btn btn-sm btn-danger">Delete Acount</button>
+                    <button formaction="/users/{{user.username}}/feedback/add" formmethod="GET" class="btn btn-sm btn-success">Add Feedback</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-8">
+            <h4>Your Feedback</h4>
+            {% for f in feedback %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{f.title}}</h5>
+                        <p class="card-text">{{f.content}}</p>
+                        <form>
+                            <button formaction="/feedback/{{f.id}}/delete" formmethod="POST" class="btn btn-sm btn-danger">Delete</button>
+                            <button formaction="/feedback/{{f.id}}/update" formmethod="GET" class="btn btn-sm btn-info">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+    {% if user.is_admin and all_feedback %}
+    <h3>Admin Area</h3>
+    <div class="row my-5">
+        {% for f in all_feedback %}
+                <div class="card col-6">
+                    <div class="card-body">
+                        <h5 class="card-title">{{f.title}}</h5>
+                        <p class="card-text">{{f.content}}</p>
+                        <p class="card-text">User: {{f.username}}<bold></bold></p>
+                        <form>
+                            <button formaction="/feedback/{{f.id}}/delete" formmethod="POST" class="btn btn-sm btn-danger">Delete</button>
+                            <button formaction="/feedback/{{f.id}}/update" formmethod="GET" class="btn btn-sm btn-info">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+
+    {% endif %}
+</div>
+
+
+{% endblock %}

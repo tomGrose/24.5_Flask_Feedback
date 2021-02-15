@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Feedback{% endblock%}
+
+{% block content %}
+
+{% block header %}Edit Your Feedback{% endblock %}
+
+<form method="POST">
+  {% include "form.html" %}
+
+  <button type="submit" class="btn btn-success">Submit</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>404</title>
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row align-items-center justify-content-center my-5">
+            <div class="col text-center">
+                <h1>Ooops. Looks like what you were looking for doesn't exist!</h1>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center my-5">
+            <div class="col text-center">
+                {% if session['username'] %}
+                    <a href="/users/{{session['username']}}" class="btn btn-success">Take me back to my home page!</a>
+                {% else %}
+                    <a href="/login" class="btn btn-success">I want to log in!</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

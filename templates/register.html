@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Registration Page{% endblock%}
+
+{% block header %}Register{% endblock %}
+
+{% block content %}
+<p class="lead">Register for our site.</p>
+
+<form method="POST">
+
+  {% include "form.html" %}
+
+  <button type="submit">Register</button>
+
+</form>
+
+{% endblock %}
